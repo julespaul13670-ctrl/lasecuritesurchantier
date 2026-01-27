@@ -1,0 +1,321 @@
+/* --- RESET ET BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- BANDEAUX NGE (HAUT DE PAGE) --- */
+.top-bar-bleue {
+    width: 100%;
+    height: 30px;
+    background-color: #002d62;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+}
+/* Conteneur pour gérer les 3 zones dans la barre bleue */
+/* --- CONFIGURATION BARRE BLEUE --- */
+.top-bar-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* On force les zones gauche et droite à avoir la même largeur (flex: 1) */
+.top-left, .top-right {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
+
+.top-center {
+    flex: 2; /* Plus d'espace pour le titre central */
+    display: flex;
+    justify-content: center;
+}
+
+.top-left {
+    justify-content: flex-start; /* Pousse le texte tout à gauche */
+}
+
+/* Style de la mention scolaire à gauche */
+.texte-top-gauche {
+    color: white;
+    font-size: 0.7rem; 
+    font-style: italic;
+    opacity: 0.8;
+    white-space: nowrap;
+}
+
+/* On s'assure que le titre central reste bien propre */
+.top-bar-bleue .top-center span {
+    white-space: nowrap;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Optionnel : Cacher la mention sur tout petit écran pour éviter les chevauchements */
+@media (max-width: 600px) {
+    .top-left {
+        display: none;
+    }
+}
+/* Le logo cliquable à droite */
+.logo-secondaire {
+    height: 35px; /* Ajuste cette valeur pour réduire la taille */
+    width: auto;
+    cursor: pointer;
+}
+
+/* Le texte à côté du logo de droite */
+.texte-droite {
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.top-bar-bleue span {
+    color: white;
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar-blanche {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* On force les blocs gauche et droite à avoir la même largeur */
+.nav-left, .nav-right {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
+
+/* Le bloc centre prend l'espace restant et centre le texte */
+.nav-center {
+    flex: 2; /* Plus large pour le titre */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-right {
+    justify-content: flex-end; /* Pousse le nouveau logo à droite */
+    gap: 10px;
+}
+
+.titre-navbar {
+    font-size: 1.5rem;
+    color: #002d62;
+    margin: 0;
+    white-space: nowrap; /* Empêche le titre de sauter une ligne */
+}
+
+.logo-site { height: 50px; width: auto; }
+
+/* --- SECTION HERO (FOND D'ECRAN) --- */
+.hero {
+    position: relative; /* Indispensable pour que le sous-titre se place par rapport à ce bloc */
+    margin-top: 110px;
+    min-height: calc(100vh - 110px);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./images/fond-chantier.png') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre les cartes verticalement */
+    align-items: center;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sous-titre {
+    position: absolute; /* On le sort du flux pour le placer librement */
+    top: 0px;          /* Distance fixe depuis le haut du fond d'écran */
+    left: 50%;          /* On le place au milieu horizontalement */
+    transform: translateX(-50%); /* Centrage parfait */
+    
+    display: block !important;
+    color: white !important;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0,0,0,1);
+    width: 100%;
+    text-align: center;
+    z-index: 15;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row; /* Icônes côte à côte */
+    gap: 30px;
+    justify-content: center;
+    margin-top: 100px; /* Espace pour ne pas que les cartes montent trop */
+}
+
+.carte {
+    background-color: white;
+    color: #333;
+    padding: 25px;
+    border-radius: 10px;
+    width: 250px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    position: relative;
+    z-index: 20;
+}
+
+.carte:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+    border: 2px solid #0076a3;
+}
+
+.carte h3 { color: #d32f2f; margin-top: 0; }
+
+.icone-emoji {
+    display: block;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+/* --- MODULE EPI (OUVRIER) --- */
+.container-epi {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.icon-epi {
+    position: absolute;
+    width: 100px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.icon-epi img {
+    width: 60px;
+    background: #0076a3;
+    padding: 15px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.pos-casque { top: 0; left: 50%; transform: translateX(-50%); }
+.pos-bruit { top: 15%; right: 5%; }
+.pos-lunettes { top: 15%; left: 5%; }
+.pos-gilet { top: 45%; right: 0%; }
+.pos-gants { top: 45%; left: 0%; }
+.pos-chaussures { bottom: 0; left: 50%; transform: translateX(-50%); }
+
+/* --- MODULE REGLES VITALES --- */
+.fond-regles {
+    position: relative;
+    width: 100%; 
+    height: 85vh; 
+    margin: 0 auto;
+    background-image: url('images/règles-vitales.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent !important; 
+}
+
+/* --- IMAGE DU PROFESSEUR --- */
+.image-prof-fixe {
+    position: fixed;
+    right: 200px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: auto;
+    z-index: 5;
+    cursor: pointer;
+    filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.2));
+}
+
+/* --- FENETRES MODALES --- */
+.modal, .modal-epi {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-contenu {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.btn-suivant, .btn-retour {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+@media (max-width: 800px) {
+    .modal-layout {
+        flex-direction: column; /* Empile les images et le texte */
+        overflow-y: auto; /* Permet de défiler si le contenu est long */
+        max-height: 90vh;
+    }
+    .img-side {
+        width: 150px; /* Réduit la taille des images sur mobile */
+    }
+    .modal-box-center {
+        width: 90%;
+    }
+}

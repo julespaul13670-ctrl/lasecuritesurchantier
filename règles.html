@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Règles Vitales NGE</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Reset et Fond de chantier --- */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-image: url('images/fond-chantier-4.jpg') !important;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden; 
+            text-align: center;
+        }
+
+        /* --- Bande Blanche (Header) --- */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .bar-content {
+            width: 95%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; 
+            align-items: center;
+        }
+
+        .menu-container {
+            grid-column: 1;
+            text-align: left;
+        }
+
+        .bar-title {
+            grid-column: 2;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e2001a; 
+        }
+
+        .img-menu {
+            width: 45px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            vertical-align: middle;
+        }
+
+        .img-menu:hover { transform: scale(1.1); }
+
+        /* --- Instruction (Style identique à la page EPI) --- */
+        .instruction {
+            color: white;
+            background: rgba(0,0,0,0.7);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            margin-top: 100px; /* Espace sous la top-bar */
+            margin-bottom: 10px;
+            font-size: 1rem;
+            z-index: 5;
+            position: relative;
+        }
+
+        /* --- Conteneur Image Principale --- */
+        .fond-regles {
+            position: relative;
+            width: 85vw;
+            height: 70vh; 
+            margin: 0 auto;
+            background-image: url('images/règles-vitales.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: transparent; 
+            box-shadow: none;
+            border-radius: 20px;
+        }
+
+        /* Zones interactives (Triangles) */
+        .triangle-cliquable {
+            position: absolute;
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+        .t1 { top: 4%;  left: 11%; width: 33%; height: 23%; }
+        .t2 { top: 31%; left: 11%; width: 33%; height: 23%; }
+        .t3 { top: 58%; left: 11%; width: 33%; height: 23%; }
+        .t4 { top: 4%;  left: 56%; width: 33%; height: 23%; }
+        .t5 { top: 31%; left: 56%; width: 33%; height: 23%; }
+        .t6 { top: 58%; left: 56%; width: 33%; height: 23%; }
+
+        /* --- Modales --- */
+        .modal-regle {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center; justify-content: center;
+        }
+
+        .modal-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 95%;
+            max-width: 1200px;
+            gap: 30px;
+        }
+
+        .modal-box-center {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 400px;
+            text-align: center;
+            border-top: 8px solid #e2001a;
+        }
+
+        .img-side {
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        button.btn-close {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #e2001a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="bar-content">
+            <div class="menu-container">
+                <a href="index.html">
+                    <img src="images/menu.png" alt="Retour Menu" class="img-menu">
+                </a>
+            </div>
+            <span class="bar-title">Règles Vitales Sécurité</span>
+            <div></div>
+        </div>
+    </header>
+
+    <div class="instruction">Cliquez sur les triangles pour voir les détails</div>
+
+    <div class="fond-regles">
+        <div class="triangle-cliquable t1" onclick="ouvrirRegle('ceinture')"></div>
+        <div class="triangle-cliquable t2" onclick="ouvrirRegle('fouilles')"></div>
+        <div class="triangle-cliquable t3" onclick="ouvrirRegle('hauteur')"></div>
+        <div class="triangle-cliquable t4" onclick="ouvrirRegle('charge')"></div>
+        <div class="triangle-cliquable t5" onclick="ouvrirRegle('angles')"></div>
+        <div class="triangle-cliquable t6" onclick="ouvrirRegle('banches')"></div>
+    </div>
+
+    <div id="modalInfo" class="modal-regle">
+        <div class="modal-layout">
+            <img id="img-gauche" src="" class="img-side" alt="Illustration">
+            <div class="modal-box-center">
+                <h2 id="titreRegle" style="color:#e2001a; margin-top:0;"></h2>
+                <p id="texteRegle" style="line-height: 1.6; font-size: 1.1rem;"></p>
+                <button class="btn-close" onclick="fermer()">J'ai compris</button>
+            </div>
+            <img id="img-droite" src="" class="img-side" alt="Illustration">
+        </div>
+    </div>
+
+    <script>
+        const dataRegles = {
+            'ceinture': { t: "Ceinture de Sécurité", p: "Je porte la ceinture de sécurité dans tous les véhicules et engins équipés. C'est la première protection en cas de basculement.", imgG: "images/ceinture-1.jpg", imgD: "images/ceinture-2.png" },
+            'fouilles': { t: "Fouilles et Tranchées", p: "Je travaille dans des fouilles et tranchées blindées ou talutées pour éviter tout risque d'ensevelissement.", imgG: "images/fouilles-1.jpg", imgD: "images/fouiles-2.png" },
+            'hauteur':  { t: "Travail en Hauteur",   p: "Je travaille en hauteur avec des protections collectives (garde-corps) ou individuelles (harnais) attachées.", imgG: "images/hauteur-1.jpg",  imgD: "images/hauteur-2.jpg"  },
+            'charge':   { t: "Zone de Charge",       p: "Je me tiens hors de la zone d'évolution de la charge pour éviter d'être heurté en cas de chute ou de rupture.", imgG: "images/charge-1.png",   imgD: "images/charge-2.png"   },
+            'angles':   { t: "Angles Morts",        p: "Je me tiens éloigné des angles morts des engins et véhicules. Si je ne vois pas le conducteur, il ne me voit pas.", imgG: "images/angles-1.png",   imgD: "images/angles-2.jpg"   },
+            'banches':  { t: "Stabilisation",       p: "Je stabilise les banches et les éléments préfabriqués avant de retirer l'élingage pour éviter les basculements.", imgG: "images/banches-1.jpg",  imgD: "images/banches-2.jpg"  }
+        };
+
+        function ouvrirRegle(cle) {
+            const d = dataRegles[cle];
+            document.getElementById('titreRegle').innerText = d.t;
+            document.getElementById('texteRegle').innerText = d.p;
+            document.getElementById('img-gauche').src = d.imgG;
+            document.getElementById('img-droite').src = d.imgD;
+            document.getElementById('modalInfo').style.display = 'flex';
+        }
+
+        function fermer() {
+            document.getElementById('modalInfo').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sécurité Chantier</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Ajustements pour iPhone et petits écrans --- */
+@media (max-width: 768px) {
+    /* On réduit la hauteur des barres de navigation */
+    .top-bar-bleue, .navbar-blanche {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        flex-direction: column; /* On empile le logo et le nom */
+        gap: 10px;
+    }
+
+    .titre-navbar {
+        font-size: 1.2rem; /* Titre plus petit */
+    }
+
+    /* Le bloc d'explication flottant passe en mode normal */
+    .explication-projet {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 90%;
+        margin: 20px auto;
+        font-size: 0.9rem;
+    }
+
+    /* Les cartes du menu s'empilent au lieu d'être côte à côte */
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .carte {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .hero-content {
+        padding-top: 20px;
+    }
+}
+        /* --- Style du bloc d'explication flottant --- */
+        .explication-projet {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 260px;
+            background-color: rgba(255, 255, 255, 0.1); /* Fond transparent */
+            backdrop-filter: blur(8px); /* Effet de flou moderne */
+            -webkit-backdrop-filter: blur(8px);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #e2001a; /* Barre rouge NGE */
+            text-align: left;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .explication-projet h3 {
+            margin: 0 0 8px 0;
+            color: #e2001a;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .explication-projet p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* On s'assure que le hero est la référence pour le placement */
+        .hero {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar-bleue">
+    <div class="top-bar-container">
+        <div class="top-left">
+            <span class="texte-top-gauche">Projet étudiant usage scolaire uniquement - Non affilié à NGE</span>
+        </div>
+        <div class="top-center">
+            <span>Nouvelles Générations d’Entrepreneurs</span>
+        </div>
+        <div class="top-right"></div>
+    </div>
+</div>
+
+<nav class="navbar-blanche">
+    <div class="nav-container">
+        <div class="nav-left">
+            <a href="https://www.nge.fr"><img src="images/logo.png" class="logo-site"></a>
+        </div>
+        <div class="nav-center">
+            <h1 class="titre-navbar">Sécurité sur Chantier</h1>
+        </div>
+        <div class="nav-right">
+            <span class="texte-droite">Jules PAUL <br> GUINTOLI / BUT GCCD</span>
+            <a href="https://www.linkedin.com/in/jules-paul-96732234b" target="_blank">
+                <img src="images/linkedin.png" class="logo-secondaire">
+            </a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="explication-projet">
+    <h3>ℹ️ Le Projet</h3>
+    <p>Ce site interactif est conçu pour sensibiliser aux risques sur les chantiers de façon ludique. Ce n'est pas un site officiel du groupe NGE, il est à but pédagogique.</p>
+</div>
+
+    <div class="hero-content">
+        <p class="sous-titre">Ici ma sécurité passe avant tout</p>
+        <div class="menu">
+            <div class="carte" onclick="window.location.href='jeu.html'">
+                <span class="icone-emoji">🔍</span>
+                <h3>Trouver l'erreur</h3>
+                <p>Cliquez sur les anomalies de sécurité sur la photo.</p>
+            </div>
+            <div class="carte" onclick="window.location.href='epi.html'">
+                <span class="icone-emoji">⚠️</span>
+                <h3>Les EPI</h3>
+                <p>Apprenez à bien choisir vos équipements.</p>
+            </div>
+            <div class="carte" onclick="window.location.href='règles.html'">
+                <span class="icone-emoji">👷</span>
+                <h3>6 règles vitales</h3>
+                <p>Maîtrisez les règles chez NGE.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>
