@@ -6,130 +6,98 @@
     <title>Sécurité Chantier</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* --- Ajustements pour iPhone et petits écrans --- */
-/* --- Ajustements pour iPhone et petits écrans --- */
+        /* --- 1. STYLE PAR DÉFAUT (PC ET GÉNÉRAL) --- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Style du bloc d'information sur PC (Transparent) */
+.explication-projet {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 260px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid #e2001a;
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.explication-projet h3 {
+    margin: 0 0 8px 0;
+    color: #e2001a;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.texte-mobile {
+    display: none; /* Caché sur PC */
+}
+
+/* --- 2. STYLE UNIQUEMENT POUR SMARTPHONE (iPhone) --- */
 @media (max-width: 768px) {
-    /* On utilise flexbox sur le hero pour ordonner les éléments */
-    @media (max-width: 768px) {
-    /* --- 1. Gestion des textes en haut --- */
+    /* Échange des textes en haut */
     .texte-pc {
-        display: none; /* Cache le nom long sur iPhone */
+        display: none;
     }
     .texte-mobile {
-        display: inline; /* Affiche le texte court sur iPhone */
-        font-size: 0.8rem;
+        display: inline !important;
+        font-size: 0.75rem;
     }
 
-    /* --- 2. Style du cadre (Uniquement iPhone) --- */
-    .explication-projet {
-        position: relative;
-        width: 90%;
-        margin: 100px auto 20px auto; /* Espace pour ne pas coller à la navbar */
-        
-        /* On force le style lisible sur mobile */
-        background-color: white !important; 
-        color: #333 !important;
-        border-left: 5px solid #e2001a;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        opacity: 1 !important;
-    }
-
-    .explication-projet h3 {
-        color: #e2001a !important;
-    }
-
-    /* On s'assure que le fond du hero s'étire pour tout voir */
     .hero {
-        height: auto !important;
-        min-height: 100vh;
         display: flex;
         flex-direction: column;
+        height: auto !important;
     }
-}
 
-/* --- Style par défaut pour PC (En dehors du @media) --- */
-.texte-mobile {
-    display: none; /* Cache le texte court sur PC */
-}
+    /* Style du bloc d'information sur Mobile (Blanc opaque) */
+    .explication-projet {
+        position: relative; /* Repasse dans le flux pour être au-dessus */
+        top: 0;
+        right: 0;
+        width: 90%;
+        margin: 110px auto 20px auto; /* Marge pour descendre sous la navbar */
+        background-color: white !important;
+        color: #333 !important;
+        order: 1; /* Force la position en haut du contenu */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
-    /* Le contenu principal (titre + cartes) passe en deuxième */
     .hero-content {
         order: 2;
         padding-top: 10px;
     }
 
-    /* Réduction des barres de navigation */
-    .top-bar-bleue, .navbar-blanche {
-        height: auto;
-        padding: 10px 0;
-    }
-
-    .nav-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .titre-navbar {
-        font-size: 1.2rem;
-    }
-
-    /* Les cartes du menu s'empilent verticalement */
     .menu {
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        padding: 20px;
     }
 
     .carte {
         width: 100%;
         max-width: 300px;
-        margin-bottom: 10px; /* Espace entre les cartes */
+    }
+
+    .top-bar-bleue, .navbar-blanche {
+        height: auto;
+        padding: 10px 0;
+    }
+    
+    .nav-container {
+        flex-direction: column;
     }
 }
-
-    .hero-content {
-        padding-top: 20px;
-    }
-}
-        /* --- Style du bloc d'explication flottant --- */
-        .explication-projet {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 260px;
-            background-color: rgba(255, 255, 255, 0.1); /* Fond transparent */
-            backdrop-filter: blur(8px); /* Effet de flou moderne */
-            -webkit-backdrop-filter: blur(8px);
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #e2001a; /* Barre rouge NGE */
-            text-align: left;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .explication-projet h3 {
-            margin: 0 0 8px 0;
-            color: #e2001a;
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
-
-        .explication-projet p {
-            margin: 0;
-            opacity: 0.9;
-        }
-
-        /* On s'assure que le hero est la référence pour le placement */
-        .hero {
-            position: relative;
-        }
     </style>
 </head>
 <body>
@@ -192,5 +160,6 @@
 </body>
 
 </html>
+
 
 
