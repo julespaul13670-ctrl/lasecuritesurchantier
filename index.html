@@ -11,19 +11,33 @@
 @media (max-width: 768px) {
     /* On utilise flexbox sur le hero pour ordonner les éléments */
     .hero {
-        display: flex;
-        flex-direction: column;
-        height: auto; /* Permet au contenu de s'étendre verticalement */
-    }
+    height: auto !important;
+    min-height: 100vh; /* Prend au moins toute la hauteur de l'écran */
+    padding-bottom: 50px; /* Espace en bas pour respirer */
+}
 
     /* Le bloc d'explication passe en premier grâce à 'order' */
     .explication-projet {
-        position: static; /* Annule le positionnement absolu */
+        position: relative; /* On le remet dans le flux normal */
         width: 90%;
-        margin: 20px auto;
-        order: 1; /* Force l'affichage en haut */
-        font-size: 0.9rem;
+        margin: 80px auto 20px auto; /* 80px en haut pour ne pas être caché par la navbar */
+        order: 1; 
+        
+        /* Amélioration de la visibilité */
+        background-color: rgba(255, 255, 255, 0.9); /* Fond blanc quasi opaque */
+        color: #333; /* Texte sombre pour mieux lire sur le blanc */
+        backdrop-filter: none; /* On enlève le flou qui peut gêner la lecture sur mobile */
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         box-sizing: border-box;
+    }
+
+    .explication-projet h3 {
+        color: #e2001a; /* On garde le titre en rouge NGE */
+    }
+
+    .explication-projet p {
+        opacity: 1; /* Texte bien net */
     }
 
     /* Le contenu principal (titre + cartes) passe en deuxième */
@@ -166,3 +180,4 @@
 </body>
 
 </html>
+
