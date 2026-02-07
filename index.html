@@ -7,44 +7,60 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* --- Ajustements pour iPhone et petits écrans --- */
+/* --- Ajustements pour iPhone et petits écrans --- */
 @media (max-width: 768px) {
-    /* On réduit la hauteur des barres de navigation */
+    /* On utilise flexbox sur le hero pour ordonner les éléments */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        height: auto; /* Permet au contenu de s'étendre verticalement */
+    }
+
+    /* Le bloc d'explication passe en premier grâce à 'order' */
+    .explication-projet {
+        position: static; /* Annule le positionnement absolu */
+        width: 90%;
+        margin: 20px auto;
+        order: 1; /* Force l'affichage en haut */
+        font-size: 0.9rem;
+        box-sizing: border-box;
+    }
+
+    /* Le contenu principal (titre + cartes) passe en deuxième */
+    .hero-content {
+        order: 2;
+        padding-top: 10px;
+    }
+
+    /* Réduction des barres de navigation */
     .top-bar-bleue, .navbar-blanche {
         height: auto;
         padding: 10px 0;
     }
 
     .nav-container {
-        flex-direction: column; /* On empile le logo et le nom */
+        flex-direction: column;
         gap: 10px;
     }
 
     .titre-navbar {
-        font-size: 1.2rem; /* Titre plus petit */
+        font-size: 1.2rem;
     }
 
-    /* Le bloc d'explication flottant passe en mode normal */
-    .explication-projet {
-        position: relative;
-        top: 0;
-        right: 0;
-        width: 90%;
-        margin: 20px auto;
-        font-size: 0.9rem;
-    }
-
-    /* Les cartes du menu s'empilent au lieu d'être côte à côte */
+    /* Les cartes du menu s'empilent verticalement */
     .menu {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
         padding: 20px;
     }
 
     .carte {
         width: 100%;
         max-width: 300px;
+        margin-bottom: 10px; /* Espace entre les cartes */
     }
+}
 
     .hero-content {
         padding-top: 20px;
@@ -148,4 +164,5 @@
 </header>
 
 </body>
+
 </html>
