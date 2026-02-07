@@ -10,35 +10,49 @@
 /* --- Ajustements pour iPhone et petits écrans --- */
 @media (max-width: 768px) {
     /* On utilise flexbox sur le hero pour ordonner les éléments */
-    .hero {
-    height: auto !important;
-    min-height: 100vh; /* Prend au moins toute la hauteur de l'écran */
-    padding-bottom: 50px; /* Espace en bas pour respirer */
-}
+    @media (max-width: 768px) {
+    /* --- 1. Gestion des textes en haut --- */
+    .texte-pc {
+        display: none; /* Cache le nom long sur iPhone */
+    }
+    .texte-mobile {
+        display: inline; /* Affiche le texte court sur iPhone */
+        font-size: 0.8rem;
+    }
 
-    /* Le bloc d'explication passe en premier grâce à 'order' */
+    /* --- 2. Style du cadre (Uniquement iPhone) --- */
     .explication-projet {
-        position: relative; /* On le remet dans le flux normal */
+        position: relative;
         width: 90%;
-        margin: 80px auto 20px auto; /* 80px en haut pour ne pas être caché par la navbar */
-        order: 1; 
+        margin: 100px auto 20px auto; /* Espace pour ne pas coller à la navbar */
         
-        /* Amélioration de la visibilité */
-        background-color: rgba(255, 255, 255, 0.9); /* Fond blanc quasi opaque */
-        color: #333; /* Texte sombre pour mieux lire sur le blanc */
-        backdrop-filter: none; /* On enlève le flou qui peut gêner la lecture sur mobile */
-        border: 1px solid #ddd;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        box-sizing: border-box;
+        /* On force le style lisible sur mobile */
+        background-color: white !important; 
+        color: #333 !important;
+        border-left: 5px solid #e2001a;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        opacity: 1 !important;
     }
 
     .explication-projet h3 {
-        color: #e2001a; /* On garde le titre en rouge NGE */
+        color: #e2001a !important;
     }
 
-    .explication-projet p {
-        opacity: 1; /* Texte bien net */
+    /* On s'assure que le fond du hero s'étire pour tout voir */
+    .hero {
+        height: auto !important;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
+}
+
+/* --- Style par défaut pour PC (En dehors du @media) --- */
+.texte-mobile {
+    display: none; /* Cache le texte court sur PC */
+}
 
     /* Le contenu principal (titre + cartes) passe en deuxième */
     .hero-content {
@@ -122,12 +136,10 @@
 
 <div class="top-bar-bleue">
     <div class="top-bar-container">
-        <div class="top-left">
-            <span class="texte-top-gauche">Projet étudiant usage scolaire uniquement - Non affilié à NGE</span>
-        </div>
         <div class="top-center">
-            <span>Nouvelles Générations d’Entrepreneurs</span>
-        </div>
+    <span class="texte-pc">Nouvelles Générations d’Entrepreneurs</span>
+    <span class="texte-mobile">Projet étudiant usage scolaire uniquement</span>
+</div>
         <div class="top-right"></div>
     </div>
 </div>
@@ -180,4 +192,5 @@
 </body>
 
 </html>
+
 
